@@ -1,0 +1,53 @@
+<template name="OffersIndex">
+
+	<div class="well">
+		<div class="btn-group btn-block">
+			<button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown">
+				{{ filterName }} <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu" id="filter">
+				<li><a data-tag="beer">Beer</a></li>
+				<li><a data-tag="cutlery">Food</a></li>
+				<li><a data-tag="coffee">Coffee</a></li>
+				<li><a data-tag="birthday-cake">Birthday Specials</a></li>
+				<li class="divider"></li>
+				<li><a data-tag="">Reset</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	{{#unless offers}}
+		<div class="well">No offers match your search criterion :(</div>
+	{{/unless}}
+
+	{{#each offers}}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				{{ title }}
+				<span class="pull-right">
+					<i class="fa fa-{{ categories }}"></i>
+				</span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				<li class="list-group-item">Where: <b>{{ userName owner }}</b></li>
+				{{#if canAvail}}
+				<!-- 
+				<li class="list-group-item">Ends in: <b>{{ timeLeft }} seconds {{ validity }}</b></li>
+				-->
+				<li class="list-group-item">
+					<a href="" class="btn btn-block btn-primary">GRAB</a>
+				</li>
+				{{else}}
+				<li class="list-group-item">
+					<a href="" class="btn btn-block btn-primary" disabled="disabled">MISSED BY THAT MUCH!</a>
+				</li>
+				{{/if}}
+			</ul>
+		</div>
+	</div>
+	{{/each}}
+</template>
